@@ -19,7 +19,6 @@ public class JumpState : BaseState
     {
         base.Enter();
 
-        _psm.rb.gravityScale = 5f; //increases gravity for better jump
         _psm.rb.AddForce(Vector2.up * _psm.jumpForce, ForceMode2D.Impulse);
 
         _psm.anim.Play("Jump");
@@ -41,14 +40,6 @@ public class JumpState : BaseState
          {
             _psm.ChangeState(_psm.idle); //transition to idle
          }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        _psm.rb.gravityScale = 3f; //resets gravity 
-    
     }
 }
 

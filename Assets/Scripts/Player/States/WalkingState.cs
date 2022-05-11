@@ -46,6 +46,13 @@ public class WalkingState : BaseState
                 
         horizontalInput = Input.GetAxisRaw("Horizontal"); //gets axis as vector2
         //_psm.rb.MovePosition(new Vector2(_psm.player.position.x + horizontalInput * _psm.moveSpeed * Time.deltaTime, _psm.player.position.y + 0 * _psm.moveSpeed * Time.deltaTime));
-        _psm.rb.velocity = new Vector2((horizontalInput) * _psm.moveSpeed, _psm.rb.velocity.y);
+        _psm.rb.velocity = new Vector2(horizontalInput * _psm.moveSpeed, _psm.rb.velocity.y);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        _psm.rb.velocity = Vector2.zero; //resets velocity to 0 when not moving 
     }
 }

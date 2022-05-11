@@ -39,6 +39,13 @@ public class RunState : BaseState
     public override void UpdatePhysics()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        _psm.rb.velocity = new Vector2((horizontalInput) * _psm.runSpeed, _psm.rb.velocity.y);
+        _psm.rb.velocity = new Vector2(horizontalInput * _psm.runSpeed, _psm.rb.velocity.y);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        _psm.rb.velocity = Vector2.zero; //resets velocity to 0 when not moving 
     }
 }
