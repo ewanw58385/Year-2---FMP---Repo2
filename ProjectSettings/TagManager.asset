@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - floor
+  - HiddenTiles
+  - revealItem
+  - ItemToRevealTiles
   layers:
   - Default
   - TransparentFX

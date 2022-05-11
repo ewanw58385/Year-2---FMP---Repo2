@@ -18,10 +18,22 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "floor") 
+        if (col.gameObject.tag == "floor" || col.gameObject.tag == "HiddenTiles") //checking if the player is standing on the floor or a hidden tile 
         {
             isGrounded = true;
             //Debug.Log("grounded");
+        }
+
+        if (col.gameObject.tag == "revealItem") //if touches item pickup
+        {
+            GameObject[] tiles = GameObject.FindGameObjectsWithTag("HiddenTiles"); //reveal tiles
+            
+            foreach (GameObject hiddenTiles in tiles) //loop through hidden tiles
+            {
+                hiddenTiles.GetComponent<Reveal>().RevealTiles();
+                //Debug.Log(tiles.Length);
+            }  
+            Destroy(GameObject.FindWithTag("revealItem")); //destroy item pickup     
         }
     }
 
@@ -30,7 +42,6 @@ public class PlayerManager : MonoBehaviour
         isGrounded = false;
         //Debug.Log("not grounded");
     }
-
     
     void Flip(float flipDirection)
     {

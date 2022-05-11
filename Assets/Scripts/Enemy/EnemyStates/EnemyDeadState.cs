@@ -27,6 +27,7 @@ public class EnemyDeadState : BaseState
         if (_EFSM.enemyAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
             {
                 _ECM.DestroyGameObject();
+                MonoBehaviour.Instantiate(_EFSM.itemPickup, _EFSM.transform.position, Quaternion.identity);
             }
     }
 }

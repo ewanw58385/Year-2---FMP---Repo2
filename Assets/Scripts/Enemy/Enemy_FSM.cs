@@ -16,8 +16,10 @@ public class Enemy_FSM : G_FSM
     [HideInInspector] public Animator enemyAnim;
     [HideInInspector] public EnemyAI enemyAI;
     [HideInInspector] public Rigidbody2D rb;
-
+    
     [HideInInspector] public GameObject player;
+    public GameObject itemPickup;
+
 
     [HideInInspector] public bool hitCondition; //condition for transitioning to hit state, set to true on Player attack state 
     [HideInInspector] public float damageTaken; //float for holding the amount of damage taken. declared on player attack state, passed as a parameter within enemy Hit state

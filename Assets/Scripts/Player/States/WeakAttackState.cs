@@ -8,7 +8,7 @@ public class WeakAttackState : BaseState
     private PlayerCombatManager _pcm;
 
     private bool preventAttackingEveryFrame = true;
-    
+
     public WeakAttackState(Player_FSM stateMachine) : base("weakattack", stateMachine)
     {
         _psm = stateMachine;
