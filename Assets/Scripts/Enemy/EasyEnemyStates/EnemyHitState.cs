@@ -7,8 +7,8 @@ public class EnemyHitState : BaseState
     private Enemy_FSM _EFSM;
     private EnemyCombatManager _ECM;
 
-    public float knockbackForceX = 150;
-    public float knockbackForceY = 1250;
+    public float knockbackForceX = 1; //20
+    public float knockbackForceY = 1; //200
 
     public EnemyHitState(Enemy_FSM statemachine) : base("hitstate", statemachine)
     {
@@ -22,6 +22,7 @@ public class EnemyHitState : BaseState
         _ECM = _EFSM.transform.GetComponent<EnemyCombatManager>(); //gets reference to combat manager for deducting health 
 
         _EFSM.player = GameObject.Find("Player"); //for applying a knockback effect in the right direction
+        _EFSM.em.shouldFlip = true;
         
         _EFSM.enemyAnim.Play("hitAnim"); //plays hit anim
         _ECM.ApplyDamage(_EFSM.damageTaken); //calls the apply damage function from the EnemyCombatManager, passing the damageTaken parameter (set in the player attack state) as the damage to be deducted
@@ -38,7 +39,7 @@ public class EnemyHitState : BaseState
         
         if (_EFSM.enemyAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.2f) //if hit animation has finished 
         {
-            float randomNumber = Random.Range(1, 5); //returns a value between 1 and 4 (1/4 chance of teleporting if hit)
+            float randomNumber = Random.Range(1, 5000); //returns a value between 1 and 4 (1/4 chance of teleporting if hit)
             //float randomNumber = 1;
 
             if (randomNumber == 1) //teleport
@@ -52,9 +53,11 @@ public class EnemyHitState : BaseState
                 Vector2 knockbackForce = new Vector2(knockbackDirection.x * knockbackForceX, knockbackDirection.y * knockbackForceY);
 
                 _EFSM.rb.AddForce(-knockbackForce);
-                _EFSM.ChangeState(_EFSM.weakattack);
 
-                Debug.Log(knockbackForce);
+                if (_EFSM.enemyAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 3.5f)
+                {
+                    _EFSM.ChangeState(_EFSM.weakattack);
+                }
             }
         }
     }

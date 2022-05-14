@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCombatManager : MonoBehaviour
+public class BossCombatManager : MonoBehaviour
 {
     [HideInInspector] public Animator anim;
     [HideInInspector] public Enemy_FSM _EFSM;

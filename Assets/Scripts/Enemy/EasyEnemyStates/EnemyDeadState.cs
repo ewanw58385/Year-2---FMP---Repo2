@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyDeadState : BaseState
 {
@@ -21,6 +22,8 @@ public class EnemyDeadState : BaseState
         _ECM = _EFSM.GetComponent<EnemyCombatManager>();
         _ht = GameObject.Find("HiddenTiles").GetComponent<HiddenTiles>();
         _EFSM.enemyAnim.Play("deadAnim");
+
+        _EFSM.em.shouldFlip = false;
     }
 
     public override void UpdateLogic()

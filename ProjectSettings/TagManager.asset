@@ -19,9 +19,9 @@ TagManager:
   - Tilemap_Middleground
   - Tilemap_Background
   - Enemies
-  - test
-  - 
-  - 
+  - PlayerHitRange
+  - PlayerCollisionsToAvoid
+  - EnemyCollisionsToAvoid
   - 
   - 
   - 

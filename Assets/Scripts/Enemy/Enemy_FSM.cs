@@ -17,6 +17,7 @@ public class Enemy_FSM : G_FSM
     [HideInInspector] public EnemyAI enemyAI;
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public EnemyCombatManager ecm;
+    [HideInInspector] public EnemyManager em;
     
     [HideInInspector] public GameObject player;
 
@@ -36,10 +37,11 @@ public class Enemy_FSM : G_FSM
         dead = new EnemyDeadState(this);
 
         enemyAI = GetComponent<EnemyAI>(); //gets reference of the AI script for states to use 
-        enemyAnim = transform.GetChild(0).GetComponent<Animator>();
+        enemyAnim = GameObject.Find("EasyEnemyGFX").GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
         ecm = GetComponent<EnemyCombatManager>();
+        em = GetComponent<EnemyManager>();
     }
 
     protected override BaseState GetInitialState() 

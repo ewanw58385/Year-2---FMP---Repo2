@@ -21,6 +21,8 @@ public class EnemyIdle : BaseState
 
         _EFSM.enemyAnim.Play("Idle"); //plays idle animation
         _EFSM.rb.velocity = Vector2.zero; //stop AI from moving once player is out of range
+
+        _EFSM.em.shouldFlip = true;
     }
 
     public override void UpdateLogic()

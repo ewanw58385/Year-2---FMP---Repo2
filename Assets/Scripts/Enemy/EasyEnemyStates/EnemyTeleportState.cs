@@ -17,6 +17,9 @@ public class EnemyTeleportState : BaseState
     {
         base.Enter();
 
+        _EFSM.em.shouldFlip = false;
+
+
         VFXAnim = GameObject.Find("EnemyVFX").GetComponent<Animator>();
 
         Vector2 teleportDirection = new Vector2(_EFSM.player.transform.position.x - _EFSM.transform.position.x, 0).normalized; //Vector2 variable to determine the direction the player is in

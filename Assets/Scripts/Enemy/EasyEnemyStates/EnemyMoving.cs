@@ -21,6 +21,8 @@ public class EnemyMoving : BaseState
         enemyAI = _EFSM.enemyAI;
         enemyAI.InvokeRepeating("UpdatePath", 0, 0.1f); //begin updating the path
 
+        _EFSM.em.shouldFlip = true;
+
     }
 
     public override void UpdateLogic()
@@ -32,9 +34,9 @@ public class EnemyMoving : BaseState
            _EFSM.ChangeState(_EFSM.idle); //transition to idle state;
         }
 
-        if (enemyAI.attackPlayer == true) //if enemyAI script detects target (player) out of range
+        if (enemyAI.attackPlayer == true) //if enemyAI script detects target (player) within range
         {
-           _EFSM.ChangeState(_EFSM.weakattack); //transition to idle state;
+           _EFSM.ChangeState(_EFSM.weakattack); //transition to attack state;
         }
 
         if (_EFSM.hitCondition == true)

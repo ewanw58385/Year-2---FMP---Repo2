@@ -22,15 +22,16 @@ public class HiddenTiles : MonoBehaviour
         sr.enabled = false; //disable renderer     
     }
 
-    public void RevealTiles() //method to be called in player pickup script
+    public void RevealTiles() //method to be called in player pickup script. Did not want to instantiate the tiles as each tile would then need it's own position/ gameobject's transform manually passed 
     {
         sr.enabled = true; //enable renderer 
         anim.Play("fadeIn"); //reveal the tiles
         col.enabled = true; //enable the collider
 
-        Debug.Log("tiles revealed");
-
-        //did not want to instantiate the tiles as each tile would then need it's own position/ gameobject's transform manually passed 
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.2f)
+        {
+            anim.SetTrigger("glow");
+        }
     }
 
     public void InstantiateItemPickup()

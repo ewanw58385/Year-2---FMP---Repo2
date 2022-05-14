@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
-public class EnemyAI : MonoBehaviour
+public class BossAI : MonoBehaviour
 {
     public Transform target; //target for the AI to follow
 
@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D rb; //Rigidbody2D reference for applying force to the AI. 
 
-    private GameObject enemyVFX;
+    private Transform enemyVFX;
     private Transform enemyWeakAttackPos;
     private Transform enemyHeavyAttackPos;
 
@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyVFX = GameObject.Find("EasyEnemyGFX"); //for flipping sprite
+        enemyVFX = transform.GetChild(0); //for flipping sprite
 
         seeker = GetComponent<Seeker>(); 
         rb = GetComponent<Rigidbody2D>();
@@ -128,18 +128,18 @@ public class EnemyAI : MonoBehaviour
         Vector2 force = direction * speed * Time.fixedDeltaTime; //create force vector for applying force to the AI in the correct direction
         rb.velocity = new Vector2(force.x, rb.velocity.y); //apply force to the AI    
 
-        //Flip(force); //flip the AI to face the player
+        Flip(force); //flip the AI to face the player
     }
 
-     /*void Flip(Vector2 force)
+     void Flip(Vector2 force)
     {
         if (rb.velocity.x >= 0.01f && force.x > 0f)
         {
-            enemyVFX.transform.localScale = new Vector3(1f, 1f, 1f);
+            enemyVFX.localScale = new Vector3(1f, 1f, 1f);
         }
         else if (rb.velocity.x <= -0.01 && force.x < 0f)
         {
-            enemyVFX.transform.localScale = new Vector3(-1f, 1f, 1f);
+            enemyVFX.localScale = new Vector3(-1f, 1f, 1f);
         }
-    }*/
+    }
 }
