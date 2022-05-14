@@ -7,6 +7,8 @@ public class EnemyDeadState : BaseState
     public Enemy_FSM _EFSM;
     public EnemyCombatManager _ECM;
 
+    private HiddenTiles _ht;
+
     public EnemyDeadState(Enemy_FSM statemachine) : base("dead", statemachine)
     {
         _EFSM = statemachine;
@@ -17,6 +19,7 @@ public class EnemyDeadState : BaseState
         base.Enter();
 
         _ECM = _EFSM.GetComponent<EnemyCombatManager>();
+        _ht = GameObject.Find("HiddenTiles").GetComponent<HiddenTiles>();
         _EFSM.enemyAnim.Play("deadAnim");
     }
 
@@ -27,7 +30,7 @@ public class EnemyDeadState : BaseState
         if (_EFSM.enemyAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
             {
                 _ECM.DestroyGameObject();
-                MonoBehaviour.Instantiate(_EFSM.itemPickup, _EFSM.transform.position, Quaternion.identity);
+                _ht.InstantiateItemPickup();
             }
     }
 }

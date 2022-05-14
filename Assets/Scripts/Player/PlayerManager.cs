@@ -26,13 +26,13 @@ public class PlayerManager : MonoBehaviour
 
         if (col.gameObject.tag == "revealItem") //if touches item pickup
         {
-            GameObject[] tiles = GameObject.FindGameObjectsWithTag("HiddenTiles"); //reveal tiles
+            GameObject[] tiles = GameObject.FindGameObjectsWithTag("HiddenTiles"); //create array of hidden tile gameobjects 
             
-            foreach (GameObject hiddenTiles in tiles) //loop through hidden tiles
+            foreach (GameObject hiddenTiles in tiles) //loop through hidden tile array
             {
-                hiddenTiles.GetComponent<Reveal>().RevealTiles();
-                //Debug.Log(tiles.Length);
+                hiddenTiles.GetComponent<HiddenTiles>().RevealTiles(); //call the reveal method on each
             }  
+            
             Destroy(GameObject.FindWithTag("revealItem")); //destroy item pickup     
         }
     }

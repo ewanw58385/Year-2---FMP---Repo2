@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reveal : MonoBehaviour
+public class HiddenTiles : MonoBehaviour
 {
     [HideInInspector] public Animator anim;
     [HideInInspector] public Collider2D col;
     [HideInInspector] public SpriteRenderer sr;
+
+    public GameObject itemPickup;
+    public Transform enemyPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -28,5 +31,10 @@ public class Reveal : MonoBehaviour
         Debug.Log("tiles revealed");
 
         //did not want to instantiate the tiles as each tile would then need it's own position/ gameobject's transform manually passed 
+    }
+
+    public void InstantiateItemPickup()
+    {
+        Instantiate(itemPickup, enemyPosition.position, Quaternion.identity);
     }
 }

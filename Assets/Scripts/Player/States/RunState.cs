@@ -34,6 +34,11 @@ public class RunState : BaseState
         {
             _psm.ChangeState(_psm.walking); //transition back to walking
         }
+
+        if (_psm.hasBeenHit)
+        {
+            _psm.ChangeState(_psm.hit);
+        }
     }
 
     public override void UpdatePhysics()

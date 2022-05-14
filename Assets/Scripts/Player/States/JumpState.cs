@@ -27,6 +27,11 @@ public class JumpState : BaseState
     public override void UpdateLogic()
     {
         base.UpdateLogic();
+
+        if (_psm.hasBeenHit)
+        {
+            _psm.ChangeState(_psm.hit);
+        }
     }
 
     public override void UpdatePhysics()

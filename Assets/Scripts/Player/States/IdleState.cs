@@ -41,6 +41,11 @@ public class IdleState : BaseState
         {
             _psm.ChangeState(_psm.weakattack);
         }
+
+        if (_psm.hasBeenHit)
+        {
+            _psm.ChangeState(_psm.hit);
+        }
     }
     
 

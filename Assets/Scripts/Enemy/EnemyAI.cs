@@ -38,9 +38,7 @@ public class EnemyAI : MonoBehaviour
         seeker = GetComponent<Seeker>(); 
         rb = GetComponent<Rigidbody2D>();
 
-        //InvokeRepeating("UpdatePath", 0f, 0.2f); //keep updating the path, with no delay, every half second
         InvokeRepeating("CheckDistance", 0f, 0.2f); //checks the range of the player with no delay, every 0.2 seconds. 
-
     }
     
     void CheckDistance() //checks how close the player is to enemy and returns a boolean if close enough to attack (for the FSM to transition)

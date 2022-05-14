@@ -16,6 +16,10 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
     public RunState running;
     [HideInInspector]
     public WeakAttackState weakattack;
+    [HideInInspector]
+    public DeadState dead;
+    [HideInInspector]
+    public HitState hit;
 
     [HideInInspector]
     public Transform player;
@@ -26,6 +30,9 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
     public float runSpeed = 6.75f;
     public float jumpForce = 8f;
     public float jumpMoveSpeed = 3f;
+    
+    public bool hasBeenHit = false;
+    public bool hasDied = false;
 
     public void Awake()
     {
@@ -40,6 +47,8 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
         jump = new JumpState(this);
         running = new RunState(this);
         weakattack = new WeakAttackState(this);
+        dead = new DeadState(this);
+        hit = new HitState(this);
     }
 
     protected override BaseState GetInitialState() //overrides BaseState GetInitialState function to return the correct state

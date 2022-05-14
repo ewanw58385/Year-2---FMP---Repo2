@@ -38,6 +38,11 @@ public class WalkingState : BaseState
         {
             _psm.ChangeState(_psm.jump); //transition to jumping
         }
+
+        if (_psm.hasBeenHit)
+        {
+            _psm.ChangeState(_psm.hit);
+        }
     }
 
     public override void UpdatePhysics()
