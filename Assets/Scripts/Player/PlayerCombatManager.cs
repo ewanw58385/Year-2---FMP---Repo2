@@ -17,7 +17,7 @@ public class PlayerCombatManager : MonoBehaviour //values declared that enemy FS
     public float weakAttackDamage;
 
     public Transform heavyAttackPos;
-    public float heavtAttackRange = 4f;
+    public float heavyAttackRange = 4f;
     public float heavyAttackDamage;
 
     public float playerKnockbackForceX;
@@ -44,5 +44,6 @@ public class PlayerCombatManager : MonoBehaviour //values declared that enemy FS
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(weakAttackPos.position, weakAttackRange);
+        Gizmos.DrawWireSphere(heavyAttackPos.position, heavyAttackRange);
     }
 }

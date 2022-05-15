@@ -17,6 +17,8 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
     [HideInInspector]
     public WeakAttackState weakattack;
     [HideInInspector]
+    public HeavyAttackState heavyattack;
+    [HideInInspector]
     public DeadState dead;
     [HideInInspector]
     public HitState hit;
@@ -46,6 +48,7 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
         spawn = new SpawnState(this);
         jump = new JumpState(this);
         running = new RunState(this);
+        heavyattack = new HeavyAttackState(this);
         weakattack = new WeakAttackState(this);
         dead = new DeadState(this);
         hit = new HitState(this);

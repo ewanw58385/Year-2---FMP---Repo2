@@ -27,6 +27,11 @@ public class EnemyCombatManager : MonoBehaviour
         //weakAttackPosition = transform.Find("weakAttackPos");
         //heavyAttackPosition = transform.Find("heavyAttackPos");
     }
+
+    void Update()
+    {
+        //Debug.Log(enemyHealth);
+    }
     
     public void ApplyDamage(float damageTaken)
     {                

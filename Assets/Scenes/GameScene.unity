@@ -19017,7 +19017,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184707133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.11, y: -2.595055, z: 0}
+  m_LocalPosition: {x: 14.09, y: -2.595055, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1339843331}
@@ -75352,6 +75352,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4932375014971562, guid: b21d730486ee82141a2313c1c038883a, type: 3}
   m_PrefabInstance: {fileID: 145671018}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1782023398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1782023399}
+  m_Layer: 11
+  m_Name: PlayerHeavyAttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1782023399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782023398}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.45, y: -0.14, z: -107.09519}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2036436027}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1782453245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76617,6 +76647,7 @@ Transform:
   m_Children:
   - {fileID: 983051394}
   - {fileID: 665721437}
+  - {fileID: 1782023399}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76805,11 +76836,11 @@ MonoBehaviour:
   playerHealth: 100
   knockbackDirection: {x: 0, y: 0}
   weakAttackPos: {fileID: 983051394}
-  weakAttackRange: 0.81
+  weakAttackRange: 0.46
   weakAttackDamage: 20
-  heavyAttackPos: {fileID: 0}
-  heavtAttackRange: 4
-  heavyAttackDamage: 0
+  heavyAttackPos: {fileID: 1782023399}
+  heavyAttackRange: 0.77
+  heavyAttackDamage: 25
   playerKnockbackForceX: 350
   playerKnockbackForceY: 200
 --- !u!1001 &2045408176

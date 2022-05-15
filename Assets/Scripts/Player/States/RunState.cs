@@ -29,15 +29,28 @@ public class RunState : BaseState
         {
             _psm.ChangeState(_psm.jump); //jump
         }
-        
-        if (!Input.GetKey(KeyCode.LeftShift)) //if not holding left shift key
+
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            _psm.ChangeState(_psm.walking); //transition back to walking
+            if(Input.GetMouseButtonDown(0))
+            {
+                _psm.ChangeState(_psm.heavyattack);
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            _psm.ChangeState(_psm.weakattack);
         }
 
         if (_psm.hasBeenHit)
         {
             _psm.ChangeState(_psm.hit);
+        }
+                
+        if (!Input.GetKey(KeyCode.LeftShift)) //if not holding left shift key
+        {
+            _psm.ChangeState(_psm.walking); //transition back to walking
         }
     }
 
