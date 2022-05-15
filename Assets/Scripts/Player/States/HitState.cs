@@ -19,14 +19,14 @@ public class HitState : BaseState
 
         _pcm = _psm.GetComponent<PlayerCombatManager>();
 
-        _psm.anim.Play("hitAnim"); //play the hit animation
+        _psm.anim.Play("hitAnim");
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
     
-        if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f) //if hit animation has finished playing
+        if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.2f) //if hit animation has finished playing
         {
             if (_pcm.playerHealth <= 0) //if no health left
             {
@@ -39,8 +39,6 @@ public class HitState : BaseState
             }
         }
     }
-
-   
 
     public override void Exit()
     {

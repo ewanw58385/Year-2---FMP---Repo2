@@ -47,10 +47,4 @@ public class IdleState : BaseState
             _psm.ChangeState(_psm.hit);
         }
     }
-    
-
-    public override void UpdatePhysics()
-    {
-
-    }
 }

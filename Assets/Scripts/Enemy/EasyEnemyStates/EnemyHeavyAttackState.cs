@@ -43,7 +43,6 @@ public class EnemyHeavyAttackState : BaseState
                 {
                     _EFSM.player.GetComponent<Player_FSM>().hasBeenHit = true; //set the condition for transitioning to hit state to true
                     _EFSM.player.GetComponent<PlayerCombatManager>().TakeDamage(_ecm.heavyAttackDamage); //apply damage to player passing weak attack damage as parameter
-                    _EFSM.player.GetComponent<PlayerCombatManager>().KnockbackPlayer(_EFSM.transform.position);
                 }
 
                 preventAttackingEveryFrame = false;

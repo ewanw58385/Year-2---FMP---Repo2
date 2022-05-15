@@ -19047,7 +19047,7 @@ MonoBehaviour:
   heavyAttackPosition: {fileID: 2125463299}
   heavyAttackRange: 1.69
   heavyAttackDamage: 20
-  enemyHealth: 60
+  enemyHealth: 150
 --- !u!114 &1184707141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76803,6 +76803,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   playerHealth: 100
+  knockbackDirection: {x: 0, y: 0}
   weakAttackPos: {fileID: 983051394}
   weakAttackRange: 0.81
   weakAttackDamage: 20

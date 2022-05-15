@@ -50,19 +50,18 @@ public class EnemyWeakAttackState : BaseState
                     {
                         _EFSM.player.GetComponent<Player_FSM>().hasBeenHit = true; //set the condition for transitioning to hit state to true
                         _EFSM.player.GetComponent<PlayerCombatManager>().TakeDamage(_ecm.weakAttackDamage); //apply damage to player passing weak attack damage as parameter
-                        _EFSM.player.GetComponent<PlayerCombatManager>().KnockbackPlayer(_EFSM.transform.position);
                         //Debug.Log(_ecm.weakAttackDamage);
                     }
 
-                    preventAttackingEveryFrame = false;
+                    preventAttackingEveryFrame = false; //prevent iterating again
                 }
             }            
         }
+
         if (_EFSM.enemyAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f + transitionDelay) //if anim finished
         {
             _EFSM.em.shouldFlip = true; //allow enemy to flip before entering heavy attack
             _EFSM.ChangeState(_EFSM.heavyattack); //transition to moving state
-            //preventAttackingEveryFrame = true;
         }
 
         if (_EFSM.hitCondition == true)
