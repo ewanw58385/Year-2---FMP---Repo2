@@ -24,7 +24,6 @@ public class EnemyIdle : BaseState
 
         _EFSM.em.shouldFlip = true;
         _EFSM.hitCondition = false;
-
     }
 
     public override void UpdateLogic()

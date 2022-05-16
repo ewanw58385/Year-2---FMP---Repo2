@@ -15,8 +15,11 @@ public class BossIdleState : BaseState
     {
         base.Enter();
 
-        _bfsm.bAnim.Play("Idle"); //plays idle animation
-        _bfsm.bRb.velocity = Vector2.zero; //stop AI from moving once player is out of range
+        _bfsm.bossAnim.Play("idle"); //plays idle animation
+        _bfsm.bossRb.velocity = Vector2.zero; //stop AI from moving once player is out of range
+
+        _bfsm.bm.shouldFlip = true;
+        //_bfsm.hitCondition = false;
     }
 
     public override void UpdateLogic()
@@ -33,9 +36,9 @@ public class BossIdleState : BaseState
     {
         base.UpdatePhysics();
 
-        /*if (_bfsm.bossAI.playerWithinRange == true) //if enemyAI script detects target (player) within range
+        if (_bfsm.bossAI.playerWithinRange == true) //if enemyAI script detects target (player) within range
         {
            _bfsm.ChangeState(_bfsm.moving); //transition to moving state;
-        }*/
+        }
     }
 }

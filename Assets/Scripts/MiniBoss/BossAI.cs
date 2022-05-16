@@ -7,7 +7,7 @@ public class BossAI : MonoBehaviour
 {
     public Transform target; //target for the AI to follow
 
-    public float speed = 200f; //speed the AI will move
+    public float speed; //speed the AI will move
     public float nextWaypointDistance = 3f; //how close the enemy needs to be to a node before moving onto the next 
     public float aggroRange;
     public float attackRange;
@@ -127,19 +127,5 @@ public class BossAI : MonoBehaviour
 
         Vector2 force = direction * speed * Time.fixedDeltaTime; //create force vector for applying force to the AI in the correct direction
         rb.velocity = new Vector2(force.x, rb.velocity.y); //apply force to the AI    
-
-        Flip(force); //flip the AI to face the player
-    }
-
-     void Flip(Vector2 force)
-    {
-        if (rb.velocity.x >= 0.01f && force.x > 0f)
-        {
-            enemyVFX.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if (rb.velocity.x <= -0.01 && force.x < 0f)
-        {
-            enemyVFX.localScale = new Vector3(-1f, 1f, 1f);
-        }
     }
 }

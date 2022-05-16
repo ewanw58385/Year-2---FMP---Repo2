@@ -17,6 +17,7 @@ public class PlayerCombatManager : MonoBehaviour //values declared that enemy FS
     private bool recoveryTimer = false; //bool to start recovery
 
     public LayerMask enemyLayer; //for detecting enemies 
+    public LayerMask bossLayer;
 
     public Transform weakAttackPos; //weak attack position
     public float weakAttackRange = 4f; //radius of attack

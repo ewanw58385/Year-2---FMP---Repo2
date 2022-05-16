@@ -5,7 +5,9 @@ using UnityEngine;
 public class BossCombatManager : MonoBehaviour
 {
     [HideInInspector] public Animator anim;
-    [HideInInspector] public Enemy_FSM _EFSM;
+    [HideInInspector] public Boss_FSM _bfsm;
+    [HideInInspector] public BossHealthbarScript healthBar;
+
 
     public LayerMask playerLayerMask;
     
@@ -17,25 +19,30 @@ public class BossCombatManager : MonoBehaviour
     public float heavyAttackRange;
     public float heavyAttackDamage;
 
-    public float enemyHealth = 9;
+    public float bossHealth = 100;
+    public float currentBossHealth;
+
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        _EFSM = GetComponent<Enemy_FSM>();
+        _bfsm = GetComponent<Boss_FSM>();
 
-        //weakAttackPosition = transform.Find("weakAttackPos");
-        //heavyAttackPosition = transform.Find("heavyAttackPos");
+        healthBar = GameObject.Find("Boss Health Bar").GetComponent<BossHealthbarScript>(); //get instance of UI healthbar script
+        healthBar.SetMaxHealth(bossHealth); //pass initial health (max health) as max health on slider
     }
     
     public void ApplyDamage(float damageTaken)
     {                
-        enemyHealth =  enemyHealth - damageTaken; //deduct damage to health
+        currentBossHealth =  bossHealth - damageTaken; //deduct damage to health
+        bossHealth = currentBossHealth;
 
-        if (enemyHealth <= 0)
+        if (currentBossHealth <= 0)
         {
-            _EFSM.enemyDead = true;
+            _bfsm.enemyDead = true;
         }
+
+        healthBar.SetHealth(currentBossHealth); //set new value in healthbar script
     }
 
     public void DestroyGameObject()

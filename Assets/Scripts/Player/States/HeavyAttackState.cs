@@ -33,11 +33,19 @@ public class HeavyAttackState : BaseState
             {
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(_pcm.heavyAttackPos.position, _pcm.heavyAttackRange, _pcm.enemyLayer); //creates array of colliders which are within the boundary and are of the correct layermask 
 
-                foreach (Collider2D enemyHit in enemiesToDamage) //for each enemy hit in the array declared above
-                {
-                    enemyHit.GetComponent<Enemy_FSM>().hitCondition = true; //set the condition for transitioning to hit state to true
-                    enemyHit.GetComponent<Enemy_FSM>().damageTaken = _pcm.heavyAttackDamage; //damage float for hit state
-                }
+                    foreach (Collider2D enemyHit in enemiesToDamage) //for each enemy hit in the array declared above
+                    {
+                        enemyHit.GetComponent<Enemy_FSM>().hitCondition = true; //set the condition for transitioning to hit state to true
+                        enemyHit.GetComponent<Enemy_FSM>().damageTaken = _pcm.heavyAttackDamage; //damage float for hit state
+                    }
+
+                 Collider2D[] bossesToDamage = Physics2D.OverlapCircleAll(_pcm.heavyAttackPos.position, _pcm.heavyAttackRange, _pcm.bossLayer); //creates array of colliders which are within the boundary and are of the correct layermask 
+
+                    foreach (Collider2D bossHit in bossesToDamage) //for each enemy hit in the array declared above
+                    {
+                        bossHit.GetComponent<Boss_FSM>().hitCondition = true; //set the condition for transitioning to hit state to true
+                        bossHit.GetComponent<Boss_FSM>().damageTaken = _pcm.heavyAttackDamage; //damage float for hit state
+                    }
                 
                 preventAttackingEveryFrame = false;
             }
