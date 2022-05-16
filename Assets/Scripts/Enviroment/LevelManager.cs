@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject enemy;
+    [HideInInspector] public GameObject player;
+    [HideInInspector] public GameObject enemy;
     // Start is called before the first frame update
     void Start()
     {

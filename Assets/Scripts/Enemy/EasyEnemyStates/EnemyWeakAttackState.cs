@@ -26,6 +26,7 @@ public class EnemyWeakAttackState : BaseState
 
         preventAttackingEveryFrame = true;
         _EFSM.em.shouldFlip = true; 
+        _EFSM.hitCondition = false;
 
         _EFSM.enemyAnim.Play("weakattack");
     }

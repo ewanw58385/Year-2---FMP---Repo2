@@ -5,7 +5,7 @@ using UnityEngine;
 public class G_FSM : MonoBehaviour
 {
 
-    BaseState currentState; //stores the current state of BaseState type (class)
+    BaseState currentState; //the current state of BaseState type (class)
 
     void Start() 
     {
@@ -46,7 +46,7 @@ public class G_FSM : MonoBehaviour
         return null;
     }
 
-        private void OnGUI()
+    private void OnGUI()
     {
         string content = currentState != null ? currentState.stateName : "(no current state)";
         GUILayout.Label($"<color='black'><size=40>{content}</size></color>");

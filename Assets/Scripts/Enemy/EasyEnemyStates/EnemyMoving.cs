@@ -22,7 +22,7 @@ public class EnemyMoving : BaseState
         enemyAI.InvokeRepeating("UpdatePath", 0, 0.1f); //begin updating the path
 
         _EFSM.em.shouldFlip = true;
-
+        _EFSM.hitCondition = false;
     }
 
     public override void UpdateLogic()

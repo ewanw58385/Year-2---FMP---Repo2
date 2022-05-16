@@ -23,6 +23,8 @@ public class EnemyIdle : BaseState
         _EFSM.rb.velocity = Vector2.zero; //stop AI from moving once player is out of range
 
         _EFSM.em.shouldFlip = true;
+        _EFSM.hitCondition = false;
+
     }
 
     public override void UpdateLogic()
@@ -43,10 +45,5 @@ public class EnemyIdle : BaseState
         {
            _EFSM.ChangeState(_EFSM.moving); //transition to moving state;
         }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [HideInInspector]public GameObject player;
-    public bool shouldFlip = true;
+    [HideInInspector] public GameObject player;
+    [HideInInspector] public bool shouldFlip = true;
 
     // Start is called before the first frame update
     void Start()

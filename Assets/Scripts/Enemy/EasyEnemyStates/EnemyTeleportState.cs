@@ -18,7 +18,7 @@ public class EnemyTeleportState : BaseState
         base.Enter();
 
         _EFSM.em.shouldFlip = false;
-
+        _EFSM.hitCondition = false;
 
         VFXAnim = GameObject.Find("EnemyVFX").GetComponent<Animator>();
 
@@ -32,7 +32,12 @@ public class EnemyTeleportState : BaseState
     {
         base.UpdateLogic();
 
-         if (VFXAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8f) //if teleport anim has finished 
+        if(_EFSM.hitCondition == true)
+        {
+            _EFSM.ChangeState(_EFSM.hitstate);
+        }
+
+        if (VFXAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f) //if teleport anim has finished 
         {
             VFXAnim.SetTrigger("finishedTeleporting"); //reset for next teleport anim
             _EFSM.ChangeState(_EFSM.idle); //change state

@@ -28,13 +28,12 @@ public class HitState : BaseState
     
         if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.2f) //if hit animation has finished playing
         {
-            if (_pcm.playerHealth <= 0) //if no health left
+            if (_pcm.currentHealth <= 0) //if no health left
             {
                 _psm.ChangeState(_psm.dead); //change to dead state
             }
             else
             {
-                //_pcm.KnockbackPlayer();
                 _psm.ChangeState(_psm.idle); //otherwise return to idle state
             }
         }

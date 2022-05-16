@@ -12,7 +12,6 @@ public class Enemy_FSM : G_FSM
     [HideInInspector] public EnemyTeleportState teleport;
     [HideInInspector] public EnemyDeadState dead;
 
-
     [HideInInspector] public Animator enemyAnim;
     [HideInInspector] public EnemyAI enemyAI;
     [HideInInspector] public Rigidbody2D rb;
@@ -24,8 +23,10 @@ public class Enemy_FSM : G_FSM
     [HideInInspector] public bool hitCondition; //condition for transitioning to hit state, set to true on Player attack state 
     [HideInInspector] public float damageTaken; //float for holding the amount of damage taken. declared on player attack state, passed as a parameter within enemy Hit state
     [HideInInspector] public bool enemyDead; //bool for transitioning to dead state. Determined in the enemy combat manager. 
-    public float teleportDistance = 4f;
-
+    
+    public float teleportDistance = 4f; 
+    public LayerMask walls; 
+    
     public void Awake()
     {
         idle = new EnemyIdle(this);

@@ -6,6 +6,7 @@ public class EnemyCombatManager : MonoBehaviour
 {
     [HideInInspector] public Animator anim;
     [HideInInspector] public Enemy_FSM _EFSM;
+    [HideInInspector] public EnemyHealthBarScript healthBar;
 
     public LayerMask playerLayerMask;
     
@@ -18,29 +19,33 @@ public class EnemyCombatManager : MonoBehaviour
     public float heavyAttackDamage;
 
     public float enemyHealth = 9;
+    public float currentEnemyHealth;
 
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
         _EFSM = GetComponent<Enemy_FSM>();
 
-        //weakAttackPosition = transform.Find("weakAttackPos");
-        //heavyAttackPosition = transform.Find("heavyAttackPos");
+        healthBar = GameObject.Find("Enemy Health Bar").GetComponent<EnemyHealthBarScript>(); //get instance of UI healthbar script
+        healthBar.SetMaxHealth(enemyHealth); //pass initial health (max health) as max health on slider
     }
 
     void Update()
     {
-        Debug.Log(enemyHealth);
+        //Debug.Log(enemyHealth);
     }
     
     public void ApplyDamage(float damageTaken)
     {                
-        enemyHealth =  enemyHealth - damageTaken; //deduct damage to health
+        currentEnemyHealth =  enemyHealth - damageTaken; //deduct damage to health
+        enemyHealth = currentEnemyHealth;
 
-        if (enemyHealth <= 0)
+        if (currentEnemyHealth <= 0)
         {
             _EFSM.enemyDead = true;
         }
+
+        healthBar.SetHealth(currentEnemyHealth); //set new value in healthbar script
     }
 
     public void DestroyGameObject()

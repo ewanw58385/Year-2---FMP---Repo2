@@ -25,6 +25,7 @@ public class EnemyHeavyAttackState : BaseState
         
         _EFSM.em.shouldFlip = false;
         preventAttackingEveryFrame = true;
+        _EFSM.hitCondition = false;
 
         _EFSM.enemyAnim.Play("sweepattack");
     }
