@@ -30,7 +30,7 @@ public class EnemyCombatManager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(enemyHealth);
+        Debug.Log(enemyHealth);
     }
     
     public void ApplyDamage(float damageTaken)

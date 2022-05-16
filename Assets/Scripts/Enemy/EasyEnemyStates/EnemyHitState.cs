@@ -40,8 +40,8 @@ public class EnemyHitState : BaseState
         {
             if (knockbackOnce)
             {
-                //randomNumber = Random.Range(1, 5); //returns a value between 1 and 4 (1/4 chance of teleporting if hit)
-                float randomNumber = 2;
+                randomNumber = Random.Range(1, 5); //returns a value between 1 and 4 (1/4 chance of teleporting if hit)
+                //float randomNumber = 2;
                 Debug.Log(randomNumber);
 
                 if (randomNumber == 1) //teleport

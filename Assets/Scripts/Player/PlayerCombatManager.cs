@@ -26,7 +26,6 @@ public class PlayerCombatManager : MonoBehaviour //values declared that enemy FS
     // Start is called before the first frame update
     void Start()
     {
-        weakAttackPos = transform.Find("PlayerWeakAttackPos");   
         psm = GetComponent<Player_FSM>();
     }
 
@@ -43,7 +42,7 @@ public class PlayerCombatManager : MonoBehaviour //values declared that enemy FS
     void OnDrawGizmosSelected() //draw attack radius to visualise in Gizmos
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(weakAttackPos.position, weakAttackRange);
+        //Gizmos.DrawWireSphere(weakAttackPos.position, weakAttackRange);
         Gizmos.DrawWireSphere(heavyAttackPos.position, heavyAttackRange);
     }
 }

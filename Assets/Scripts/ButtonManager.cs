@@ -5,7 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public void PlayGame()
+    public Animator fadeAnim;
+
+    void Start()
+    {
+        fadeAnim = GameObject.Find("Black").GetComponent<Animator>();
+    }
+
+    public void FadeToBlack()
+    {
+        fadeAnim.Play("fadeToBlack");
+    }
+
+    public void PlayGame() //called in fade to black animation keyframe
     {
         SceneManager.LoadScene("GameScene");
     }

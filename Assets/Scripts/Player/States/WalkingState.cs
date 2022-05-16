@@ -39,6 +39,19 @@ public class WalkingState : BaseState
             _psm.ChangeState(_psm.jump); //transition to jumping
         }
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            _psm.ChangeState(_psm.weakattack);
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                _psm.ChangeState(_psm.heavyattack);
+            }
+        }
+
         if (_psm.hasBeenHit)
         {
             _psm.ChangeState(_psm.hit);
