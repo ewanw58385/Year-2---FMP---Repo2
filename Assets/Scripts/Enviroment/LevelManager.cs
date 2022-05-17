@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject enemy;
+
     // Start is called before the first frame update
     void Start()
     {

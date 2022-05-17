@@ -19,17 +19,22 @@ public class BossIdleState : BaseState
         _bfsm.bossRb.velocity = Vector2.zero; //stop AI from moving once player is out of range
 
         _bfsm.bm.shouldFlip = true;
-        //_bfsm.hitCondition = false;
+        _bfsm.hitCondition = false;
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
 
-        /*if (_bfsm.hitCondition == true)
+        if (_bfsm.hitCondition == true)
         {
-            _bfsm.ChangeState(_bfsm.hitstate);
-        }*/
+            _bfsm.ChangeState(_bfsm.hit);
+        }
+
+        if(_bfsm.bossDead)
+        {
+            _bfsm.ChangeState(_bfsm.dead);
+        }
     }
 
     public override void UpdatePhysics()

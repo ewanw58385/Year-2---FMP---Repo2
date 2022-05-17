@@ -22,18 +22,12 @@ public class BossMovingState : BaseState
         BossAI.InvokeRepeating("UpdatePath", 0, 0.1f); //begin updating the path
 
         _bfsm.bm.shouldFlip = true;
-        //_bfsm.hitCondition = false;
+        _bfsm.hitCondition = false;
     }
 
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-
-
-        if (BossAI.playerWithinRange == false) //if BossAI script detects target (player) out of range
-        {
-           _bfsm.ChangeState(_bfsm.idle); //transition to idle state;
-        }
 
         if (BossAI.attackPlayer == true) //if BossAI script detects target (player) within range
         {
@@ -45,11 +39,10 @@ public class BossMovingState : BaseState
             _bfsm.ChangeState(_bfsm.hit);
         }
 
-        /*
-        if(_bfsm.enemyDead)
+        if(_bfsm.bossDead)
         {
             _bfsm.ChangeState(_bfsm.dead);
-        } */
+        }
     }
 
     public override void Exit()

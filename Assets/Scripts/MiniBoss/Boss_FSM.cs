@@ -8,7 +8,9 @@ public class Boss_FSM : G_FSM
     [HideInInspector] public BossMovingState moving;
     [HideInInspector] public BossWeakAttack weakattack;
     [HideInInspector] public BossHeavyAttack heavyattack;
+    [HideInInspector] public BossSpecialAttackState specialattack;
     [HideInInspector] public BossHitState hit;
+    [HideInInspector] public BossDeadState dead;
 
     [HideInInspector] public Animator bossAnim;
     [HideInInspector] public Rigidbody2D bossRb;
@@ -19,7 +21,7 @@ public class Boss_FSM : G_FSM
 
     [HideInInspector] public bool hitCondition; //condition for transitioning to hit state, set to true on Player attack state 
     [HideInInspector] public float damageTaken; //float for holding the amount of damage taken. declared on player attack state, passed as a parameter within Hit state
-    [HideInInspector] public bool enemyDead; //bool for transitioning to dead state. Determined in the boss combat manager. 
+    [HideInInspector] public bool bossDead; //bool for transitioning to dead state. Determined in the boss combat manager. 
 
     public void Awake()
     {
@@ -27,7 +29,9 @@ public class Boss_FSM : G_FSM
         moving = new BossMovingState(this);
         weakattack = new BossWeakAttack(this);
         heavyattack = new BossHeavyAttack(this);
+        specialattack = new BossSpecialAttackState(this);
         hit = new BossHitState(this);
+        dead = new BossDeadState(this);
 
         bossAI = GetComponent<BossAI>();
         bossRb = GetComponent<Rigidbody2D>();
@@ -35,8 +39,6 @@ public class Boss_FSM : G_FSM
         bcm = GetComponent<BossCombatManager>();
         bm = GetComponent<BossManager>();
         player = GameObject.Find("Player");
-
-
     }
 
     protected override BaseState GetInitialState() 

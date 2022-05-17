@@ -3749,7 +3749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f138a8614e207f47a06f7fab90b5818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeAnim: {fileID: 0}
+  fadeAnim: {fileID: 783047959}
 --- !u!1001 &805107074
 PrefabInstance:
   m_ObjectHideFlags: 0

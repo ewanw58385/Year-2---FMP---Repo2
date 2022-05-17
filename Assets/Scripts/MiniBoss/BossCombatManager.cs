@@ -19,8 +19,18 @@ public class BossCombatManager : MonoBehaviour
     public float heavyAttackRange;
     public float heavyAttackDamage;
 
-    public float bossHealth = 100;
-    public float currentBossHealth;
+    public Transform specialAttackPosition; 
+    public float specialAttackRange; 
+    public float specialAttackDamage;
+
+    [HideInInspector] public float bossStartingHealth;
+    [HideInInspector] public float currentBossHealth;
+    public float bossHealth;
+
+    [HideInInspector] public float recoveryDecrease; //timer decrease 
+    public float recoveryDelayTime; //recovery time delay
+    public float recoverySpeed;
+    private bool recoveryTimer = false; //bool to start recovery
 
 
     void Start()
@@ -28,18 +38,48 @@ public class BossCombatManager : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         _bfsm = GetComponent<Boss_FSM>();
 
-        healthBar = GameObject.Find("Boss Health Bar").GetComponent<BossHealthbarScript>(); //get instance of UI healthbar script
-        healthBar.SetMaxHealth(bossHealth); //pass initial health (max health) as max health on slider
+        
+        bossStartingHealth = bossHealth; //set max health
+        recoveryDecrease = recoveryDelayTime;
     }
     
+    void Update()
+    {
+        if (recoveryTimer) //if taken damage (recovery timer has been initiated)
+        {
+            recoveryDecrease -= Time.deltaTime; //begin decreasing timer
+
+            if(recoveryDecrease <= 0f) //if timer = 0
+            {
+                RestoreHealth(); //restore health
+            }
+        }
+    }
+
+    public void RestoreHealth()
+    {
+       currentBossHealth = currentBossHealth + recoverySpeed * Time.deltaTime; //increase current health by 5 every second
+        bossHealth = currentBossHealth; //set player health value
+        healthBar.SetHealth(currentBossHealth); //set new value in healthbar script
+
+        if(currentBossHealth >= bossStartingHealth) //if health has reached max (starting health)
+        {
+            recoveryTimer = false; //reset recovery timer
+            return; //return out of function
+        }
+    }
+
     public void ApplyDamage(float damageTaken)
     {                
+        recoveryTimer = true;
+        recoveryDecrease = recoveryDelayTime; //reset recovery delay
+        
         currentBossHealth =  bossHealth - damageTaken; //deduct damage to health
         bossHealth = currentBossHealth;
 
         if (currentBossHealth <= 0)
         {
-            _bfsm.enemyDead = true;
+            _bfsm.bossDead = true;
         }
 
         healthBar.SetHealth(currentBossHealth); //set new value in healthbar script
@@ -57,5 +97,8 @@ public class BossCombatManager : MonoBehaviour
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(heavyAttackPosition.position, heavyAttackRange);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(specialAttackPosition.position, specialAttackRange);
     }
 }

@@ -81,10 +81,11 @@ public class PlayerCombatManager : MonoBehaviour //values declared that enemy FS
         Destroy(gameObject);
     }
 
-    void OnDrawGizmosSelected() //draw attack radius to visualise in Gizmos
+    void OnDrawGizmos() //draw attack radius to visualise in Gizmos
     {
         Gizmos.color = Color.blue;
-        //Gizmos.DrawWireSphere(weakAttackPos.position, weakAttackRange);
+        Gizmos.DrawWireSphere(weakAttackPos.position, weakAttackRange);
+        Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(heavyAttackPos.position, heavyAttackRange);
     }
 }

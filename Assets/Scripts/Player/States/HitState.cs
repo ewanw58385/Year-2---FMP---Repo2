@@ -19,6 +19,7 @@ public class HitState : BaseState
 
         _pcm = _psm.GetComponent<PlayerCombatManager>();
 
+        _psm.hasBeenHit = false; //reset hit bool for next attack
         _psm.anim.Play("hitAnim");
     }
 
@@ -26,7 +27,7 @@ public class HitState : BaseState
     {
         base.UpdateLogic();
     
-        if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.2f) //if hit animation has finished playing
+        if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.1f) //if hit animation has finished playing
         {
             if (_pcm.currentHealth <= 0) //if no health left
             {
@@ -37,12 +38,5 @@ public class HitState : BaseState
                 _psm.ChangeState(_psm.idle); //otherwise return to idle state
             }
         }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        _psm.hasBeenHit = false; //reset hit bool for next attack
     }
 }

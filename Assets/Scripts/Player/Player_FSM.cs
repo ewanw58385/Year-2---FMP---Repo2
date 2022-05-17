@@ -31,7 +31,11 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
     public float moveSpeed = 4f;
     public float runSpeed = 6.75f;
     public float jumpForce = 8f;
+    public float doubleJumpForce = 8f;
+    public float doubleJumpCounterForce = 5f;
     public float jumpMoveSpeed = 3f;
+    public bool doubleJumpUnlocked = false; //for determining if double jump has been unlocked
+
     
     public bool hasBeenHit = false;
     public bool hasDied = false;

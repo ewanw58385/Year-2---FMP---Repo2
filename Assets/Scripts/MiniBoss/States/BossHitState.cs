@@ -46,9 +46,9 @@ public class BossHitState : BaseState
             
             knockbackOnce = false;
 
-        if(_bfsm.enemyDead)
+        if(_bfsm.bossDead)
         {
-            //_bfsm.ChangeState(_bfsm.dead);
+            _bfsm.ChangeState(_bfsm.dead);
         }
 
         if (_bfsm.hitCondition == true) //if gets hit again (while hit from first attack)

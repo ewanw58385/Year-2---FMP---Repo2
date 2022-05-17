@@ -11,8 +11,11 @@ public class BossAI : MonoBehaviour
     public float nextWaypointDistance = 3f; //how close the enemy needs to be to a node before moving onto the next 
     public float aggroRange;
     public float attackRange;
-    [HideInInspector]public bool playerWithinRange;
+    public float withinContinuedAttackRange;
+
+    [HideInInspector] public bool playerWithinRange;
     [HideInInspector] public bool attackPlayer;
+    [HideInInspector] public bool continueAttack;
 
     public Path path; //Current path the AI is following
     [HideInInspector]public Seeker seeker; //Reference to the seeker script 
@@ -31,6 +34,7 @@ public class BossAI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, aggroRange); //draws a sphere to visually see how close the player is before aggrovating 
+        Gizmos.DrawWireSphere(transform.position, withinContinuedAttackRange); //draws a sphere to visually see how close the player is before aggrovating 
         Gizmos.DrawWireSphere(transform.position, attackRange); //draws a sphere to visually see how close the player is before attacking
     }    
 

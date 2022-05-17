@@ -9,6 +9,7 @@ public class JumpState : BaseState
     private Vector2 jumpDirection; 
 
     private bool _isGrounded;
+    private bool secondJump = true; //for preventing multiple jumps in air
 
     public JumpState(Player_FSM stateMachine) : base("jump", stateMachine)
     {
@@ -32,6 +33,18 @@ public class JumpState : BaseState
         {
             _psm.ChangeState(_psm.hit);
         }
+
+        if(_psm.doubleJumpUnlocked)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && secondJump) //if pressed space bar and is only the second jump
+            {
+                _psm.rb.velocity = Vector2.zero;
+                _psm.rb.AddForce(Vector2.down * _psm.doubleJumpCounterForce, ForceMode2D.Impulse); //downwards force to slowdown the increase in velocity
+                _psm.rb.AddForce(Vector2.up * _psm.doubleJumpForce, ForceMode2D.Impulse); //jump again
+                _psm.anim.Play("Jump");
+                secondJump = false; //prevent jumping again
+            }
+        }
     }
 
     public override void UpdatePhysics()
@@ -45,6 +58,12 @@ public class JumpState : BaseState
          {
             _psm.ChangeState(_psm.idle); //transition to idle
          }
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        secondJump = true;
     }
 }
 

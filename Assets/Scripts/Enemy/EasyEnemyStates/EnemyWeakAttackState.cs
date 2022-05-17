@@ -51,7 +51,7 @@ public class EnemyWeakAttackState : BaseState
                     {
                         _EFSM.player.GetComponent<Player_FSM>().hasBeenHit = true; //set the condition for transitioning to hit state to true
                         _EFSM.player.GetComponent<PlayerCombatManager>().TakeDamage(_ecm.weakAttackDamage); //apply damage to player passing weak attack damage as parameter
-                        //Debug.Log(_ecm.weakAttackDamage);
+                        Debug.Log(playerToDamage.Length);
                     }
 
                     preventAttackingEveryFrame = false; //prevent iterating again
