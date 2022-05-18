@@ -5,6 +5,7 @@ using UnityEngine;
 public class IdleState : BaseState
 {
     private Player_FSM _psm;
+    private PlayerManager _pm;
 
     private float horizontalInput;
 
@@ -17,6 +18,8 @@ public class IdleState : BaseState
     public override void Enter()
     {
         base.Enter();
+
+        _pm = _psm.pm;
 
         _psm.anim.Play("Idle");
     }
@@ -54,5 +57,11 @@ public class IdleState : BaseState
         {
             _psm.ChangeState(_psm.hit);
         }
+
+        if (Input.GetKeyDown("e"))
+        {
+            _pm.CheckForItemInteraction();
+        }
+
     }
 }

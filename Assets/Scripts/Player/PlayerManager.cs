@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [HideInInspector] public bool isGrounded;
+
     [SerializeField] private LayerMask ground;
+    public LayerMask interactable;
 
     private float horiInput;
     public float scaleOfPlayer;
@@ -41,6 +43,15 @@ public class PlayerManager : MonoBehaviour
     {
         isGrounded = false;
         //Debug.Log("not grounded");
+    }
+
+    public void CheckForItemInteraction()
+    {
+        Collider2D[] ItemsWithinCollider = Physics2D.OverlapCircleAll(pickupPos.position, pickupRange, interactable); //creates an array of colliders checking if there is an item pickup close (called in idle state) 
+        foreach (Collider2D itemInCollider in ItemsWithinCollider)
+        {
+            itemInCollider.GetComponent<ItemPickup>().Initialise(); //calls initialise method on item pickup
+        }
     }
     
     void Flip(float flipDirection)

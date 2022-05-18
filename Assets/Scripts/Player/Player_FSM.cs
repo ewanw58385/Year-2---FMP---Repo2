@@ -28,6 +28,9 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
     public Rigidbody2D rb;
     public Animator anim;
 
+    public PlayerManager pm;
+    public Boss_FSM _bfsm;
+
     public float moveSpeed = 4f;
     public float runSpeed = 6.75f;
     public float jumpForce = 8f;
@@ -43,6 +46,8 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
     public void Awake()
     {
         player = transform; //set the transform for states here 
+        _bfsm = GameObject.Find("MiniBoss").GetComponent<Boss_FSM>();
+        pm = GetComponent<PlayerManager>();
 
 
         idle = new IdleState(this); //IdleState instance = new instance, passing "this" stateMachine as a parameter to the state's constructor 

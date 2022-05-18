@@ -50,6 +50,17 @@ public class PlayerCombatManager : MonoBehaviour //values declared that enemy FS
                 RestoreHealth(); //restore health
             }
         }
+
+        if (playerHealth <= ((25 / playerStartingHealth) * 100)) //if player health at 25% or less
+        {
+            healthBar.GetComponentInChildren<Animator>().Play("healthLow"); //play animation
+        }
+        else
+        {
+            //healthBar.GetComponentInChildren<Animator>().Play("null"); //dont play animation
+
+            healthBar.GetComponentInChildren<Animator>().SetTrigger("regainedHealth"); //dont play animation
+        }
     }
 
     public void TakeDamage(float damageTaken) //called in enemy attack script with damageTaken varying depending on the type of attack
