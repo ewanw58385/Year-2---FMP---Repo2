@@ -8,6 +8,7 @@ TagManager:
   - HiddenTiles
   - revealItem
   - ItemToRevealTiles
+  - walkableProps
   layers:
   - Default
   - TransparentFX

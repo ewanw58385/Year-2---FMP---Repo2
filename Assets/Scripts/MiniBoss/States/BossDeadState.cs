@@ -16,8 +16,6 @@ public class BossDeadState : BaseState
     {
         base.Enter();
 
-        _bfsm.player.GetComponent<Player_FSM>().doubleJumpUnlocked = true; //allow player to double jump
-
         _bfsm.bossAnim.Play("dead"); //play dead anim
         _bfsm.bm.shouldFlip = false;
     }

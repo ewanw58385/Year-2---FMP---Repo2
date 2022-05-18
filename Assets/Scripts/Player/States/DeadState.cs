@@ -27,7 +27,7 @@ public class DeadState : BaseState
 
         _psm.rb.gravityScale = 15f;
 
-        if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.1f) //if dead animation has finished 
+        if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f) //if dead animation has finished 
         {
             _pcm.DestroyGameObject(); //destroy player
         }

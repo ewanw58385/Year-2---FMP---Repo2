@@ -6,11 +6,19 @@ public class PlayerManager : MonoBehaviour
 {
     [HideInInspector] public bool isGrounded;
 
+    public GameObject pickupPos;
+    public float pickupRange = 5f;
+
     [SerializeField] private LayerMask ground;
     public LayerMask interactable;
 
     private float horiInput;
     public float scaleOfPlayer;
+
+    void Start()
+    {
+        pickupPos = GameObject.Find("PlayerPickupPos");
+    }
 
     void Update()
     {
@@ -20,7 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "floor" || col.gameObject.tag == "HiddenTiles") //checking if the player is standing on the floor or a hidden tile 
+        if (col.gameObject.tag == "floor" || col.gameObject.tag == "HiddenTiles" || col.gameObject.tag == "walkableProps") //checking if the player is standing on the floor or a hidden tile 
         {
             isGrounded = true;
             //Debug.Log("grounded");
@@ -47,13 +55,10 @@ public class PlayerManager : MonoBehaviour
 
     public void CheckForItemInteraction()
     {
-        Collider2D[] ItemsWithinCollider = Physics2D.OverlapCircleAll(pickupPos.position, pickupRange, interactable); //creates an array of colliders checking if there is an item pickup close (called in idle state) 
-        foreach (Collider2D itemInCollider in ItemsWithinCollider)
-        {
-            itemInCollider.GetComponent<ItemPickup>().Initialise(); //calls initialise method on item pickup
-        }
+        Collider2D pickupItem = Physics2D.OverlapCircle(pickupPos.transform.position, pickupRange, interactable); //checks for item pickup within range (method called in idle state) 
+        pickupItem.GetComponent<BaseItem>().Initialise(); //calls BaseItem initialise method, child Instantiate Method gets called specific to that item
     }
-    
+
     void Flip(float flipDirection)
     {
         if (flipDirection > 0) //move left
@@ -65,5 +70,11 @@ public class PlayerManager : MonoBehaviour
         {
             transform.localScale = new Vector2 (-scaleOfPlayer, scaleOfPlayer); //flip 
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(pickupPos.transform.position, pickupRange);
     }
 }

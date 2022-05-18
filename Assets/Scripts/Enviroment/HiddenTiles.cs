@@ -36,6 +36,13 @@ public class HiddenTiles : MonoBehaviour
 
     public void InstantiateItemPickup()
     {
-        Instantiate(itemPickup, enemyPosition.position, Quaternion.identity);
+        GameObject ball = Instantiate(itemPickup, enemyPosition.position, Quaternion.identity);
+
+        GameObject ballPos = GameObject.Find("BallFlyPosition");
+
+        Vector2 ballDirection = new Vector2(ballPos.transform.position.x - ball.transform.position.x, ballPos.transform.position.y - ball.transform.position.x).normalized;
+        Vector2 flyForce = new Vector2(-ballDirection.x * 12.5f, ballDirection.y * 7f);
+
+        ball.GetComponent<Rigidbody2D>().AddForce(-flyForce, ForceMode2D.Impulse);
     }
 }

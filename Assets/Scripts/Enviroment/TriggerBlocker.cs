@@ -22,6 +22,7 @@ public class TriggerBlocker : MonoBehaviour
         bcm = GameObject.Find("MiniBoss").GetComponent<BossCombatManager>();
 
         bossBar = GameObject.Find("Boss Health Bar");
+
         bossBarFillAnim = bossBar.transform.GetChild(0).GetComponent<Animator>();
         bossBarBorderAnim = bossBar.transform.GetChild(1).GetComponent<Animator>();
 

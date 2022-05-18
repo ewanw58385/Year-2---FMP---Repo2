@@ -9,6 +9,7 @@ public class EnemyDeadState : BaseState
     public EnemyCombatManager _ECM;
 
     private HiddenTiles _ht;
+    private Rigidbody2D ball;
 
     public EnemyDeadState(Enemy_FSM statemachine) : base("dead", statemachine)
     {
@@ -31,9 +32,10 @@ public class EnemyDeadState : BaseState
         base.UpdateLogic();
 
         if (_EFSM.enemyAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6f)
-            {
-                _ECM.DestroyGameObject();
-                _ht.InstantiateItemPickup();
-            }
+        {
+             _ECM.DestroyGameObject();
+
+            _ht.InstantiateItemPickup();
+        }
     }
 }

@@ -2,22 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPickup : MonoBehaviour
+public class ItemPickup : BaseItem
 {
-    // Start is called before the first frame update
+    [HideInInspector] public GameObject player;
+    [HideInInspector] public GameObject boss;
+
+    [HideInInspector] public Animator chestGFX;
+    public Animator chestVFX;
+
     void Start()
     {
-        
+        player = GameObject.Find("Player");
+        boss = GameObject.Find("MiniBoss");
+
+        chestGFX = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override void Initialise()
+    {   
+        if (boss.GetComponent<Boss_FSM>().bossDead)
+        {
+            player.GetComponent<Player_FSM>().doubleJumpUnlocked = true; //allow player to double jump
+            chestGFX.Play("chestOpen");
+            chestVFX.SetTrigger("chestOpened");
 
-    public void Initialise()
-    {
-        Debug.Log("interacted");
+            Debug.Log("opened a chest");
+        }        
     }
 }

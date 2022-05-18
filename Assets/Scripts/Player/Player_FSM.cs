@@ -28,8 +28,8 @@ public class Player_FSM : G_FSM //this is the StateMachine class for MOVEMENT. I
     public Rigidbody2D rb;
     public Animator anim;
 
-    public PlayerManager pm;
-    public Boss_FSM _bfsm;
+    [HideInInspector] public PlayerManager pm;
+    [HideInInspector] public Boss_FSM _bfsm;
 
     public float moveSpeed = 4f;
     public float runSpeed = 6.75f;

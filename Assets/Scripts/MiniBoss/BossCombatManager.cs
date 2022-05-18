@@ -6,7 +6,7 @@ public class BossCombatManager : MonoBehaviour
 {
     [HideInInspector] public Animator anim;
     [HideInInspector] public Boss_FSM _bfsm;
-    [HideInInspector] public BossHealthbarScript healthBar;
+    [HideInInspector] public BossHealthbarScript healthBar; //gets initiated in trigger script since gameobject is disabled until collision trigger
 
 
     public LayerMask playerLayerMask;
@@ -36,8 +36,7 @@ public class BossCombatManager : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        _bfsm = GetComponent<Boss_FSM>();
-
+        _bfsm = GetComponent<Boss_FSM>(); 
         
         bossStartingHealth = bossHealth; //set max health
         recoveryDecrease = recoveryDelayTime;
@@ -58,7 +57,7 @@ public class BossCombatManager : MonoBehaviour
 
     public void RestoreHealth()
     {
-       currentBossHealth = currentBossHealth + recoverySpeed * Time.deltaTime; //increase current health by 5 every second
+        currentBossHealth = currentBossHealth + recoverySpeed * Time.deltaTime; //increase current health by 5 every second
         bossHealth = currentBossHealth; //set player health value
         healthBar.SetHealth(currentBossHealth); //set new value in healthbar script
 
