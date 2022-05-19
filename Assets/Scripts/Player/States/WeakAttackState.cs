@@ -52,6 +52,16 @@ public class WeakAttackState : BaseState
                 }
             }
 
+            if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.5f)
+            {
+                if (Input.anyKey)
+                {
+                    _psm.ChangeState(_psm.idle);
+                    preventAttackingEveryFrame = true;
+                    preventSecondAttackEveryFrame = true;
+                }
+            }
+
             if (_psm.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.7f) //if attack animation is at the point of hitting the enemy (second slash)
             {
                 if (preventSecondAttackEveryFrame)

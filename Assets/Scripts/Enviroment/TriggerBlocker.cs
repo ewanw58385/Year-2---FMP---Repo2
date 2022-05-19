@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TriggerBlocker : MonoBehaviour
 {
-    public GameObject player;
-    public Animator anim;
+    [HideInInspector] public GameObject player;
+    [HideInInspector] public Animator anim;
 
-    public BossCombatManager bcm;
+    [HideInInspector] public BossCombatManager bcm;
 
-    public GameObject bossBar;
-    public Animator bossBarFillAnim;
-    public Animator bossBarBorderAnim;
+    [HideInInspector] public GameObject bossBar;
+    [HideInInspector] public Animator bossBarFillAnim;
+    [HideInInspector] public Animator bossBarBorderAnim;
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class TriggerBlocker : MonoBehaviour
 
             if (bossBarBorderAnim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 2f)
             {
-                bossBarBorderAnim.SetTrigger("fadedIn");
+                bossBarBorderAnim.SetTrigger("fadedIn"); //to return to a null state in Animator
             }
 
             

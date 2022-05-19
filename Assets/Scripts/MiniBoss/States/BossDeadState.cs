@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BossDeadState : BaseState
 {
-    public Boss_FSM _bfsm;
+    private Boss_FSM _bfsm;
 
     public BossDeadState(Boss_FSM statemachine) : base("dead", statemachine)
     {
@@ -15,6 +15,16 @@ public class BossDeadState : BaseState
     public override void Enter()
     {
         base.Enter();
+
+        GameObject[] tiles = GameObject.FindGameObjectsWithTag("BossTiles"); //create array of hidden tile gameobjects 
+            
+        foreach (GameObject bossHiddenTiles in tiles) //loop through hidden tile array
+        {
+            bossHiddenTiles.GetComponent<BossHiddenTiles>().RevealTiles(); //call the reveal method on each
+            Debug.Log(tiles.Length);
+        }  
+
+        GameObject.Find("BossBlockerTrigger").SetActive(false); //disable the collider that locks in the player
 
         _bfsm.bossAnim.Play("dead"); //play dead anim
         _bfsm.bm.shouldFlip = false;

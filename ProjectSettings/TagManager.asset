@@ -9,6 +9,7 @@ TagManager:
   - revealItem
   - ItemToRevealTiles
   - walkableProps
+  - BossTiles
   layers:
   - Default
   - TransparentFX

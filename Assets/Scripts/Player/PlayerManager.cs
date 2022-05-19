@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "floor" || col.gameObject.tag == "HiddenTiles" || col.gameObject.tag == "walkableProps") //checking if the player is standing on the floor or a hidden tile 
+        if (col.gameObject.tag == "floor" || col.gameObject.tag == "HiddenTiles" || col.gameObject.tag == "BossTiles" || col.gameObject.tag == "walkableProps") //checking if the player is standing on a walkable surface
         {
             isGrounded = true;
             //Debug.Log("grounded");

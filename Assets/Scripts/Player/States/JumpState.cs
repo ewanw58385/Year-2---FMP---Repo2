@@ -34,8 +34,8 @@ public class JumpState : BaseState
             _psm.ChangeState(_psm.hit);
         }
 
-        if(_psm.doubleJumpUnlocked)
-        {
+        //if(_psm.doubleJumpUnlocked)
+        //{
             if (Input.GetKeyDown(KeyCode.Space) && secondJump) //if pressed space bar and is only the second jump
             {
                 _psm.rb.velocity = Vector2.zero;
@@ -44,7 +44,7 @@ public class JumpState : BaseState
                 _psm.anim.Play("Jump");
                 secondJump = false; //prevent jumping again
             }
-        }
+       // }
     }
 
     public override void UpdatePhysics()
